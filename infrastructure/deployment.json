@@ -216,11 +216,11 @@
                 "description": "Azure Search Vector Fields"
             }
         },
-        "AzureSearchPermittedGroupsField": {
+        "AzureSearchPermittedCustomerField": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Azure Search Permitted Groups Field"
+                "description": "Azure Search Permitted Customer Field"
             }
         },
         "AzureSearchStrictness": {
@@ -489,8 +489,8 @@
                             "value": "[parameters('AzureSearchVectorFields')]"
                         },
                         {
-                            "name": "AZURE_SEARCH_PERMITTED_GROUPS_COLUMN",
-                            "value": "[parameters('AzureSearchPermittedGroupsField')]"
+                            "name": "AZURE_SEARCH_PERMITTED_CUSTOMER_COLUMN",
+                            "value": "[parameters('AzureSearchPermittedCustomerField')]"
                         },
                         {
                             "name": "AZURE_SEARCH_STRICTNESS",

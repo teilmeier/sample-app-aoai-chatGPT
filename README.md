@@ -68,7 +68,7 @@ Please see the [section below](#add-an-identity-provider) for important informat
     - `AZURE_SEARCH_URL_COLUMN`
     - `AZURE_SEARCH_VECTOR_COLUMNS`
     - `AZURE_SEARCH_QUERY_TYPE`
-    - `AZURE_SEARCH_PERMITTED_GROUPS_COLUMN`
+    - `AZURE_SEARCH_PERMITTED_CUSTOMER_COLUMN`
     - `AZURE_SEARCH_STRICTNESS`
     - `AZURE_OPENAI_EMBEDDING_NAME`
 
@@ -207,7 +207,7 @@ Note: settings starting with `AZURE_SEARCH` are only needed when using Azure Ope
 |AZURE_SEARCH_TITLE_COLUMN||Field from your Azure AI Search index that gives a relevant title or header for your data content to display in the UI.|
 |AZURE_SEARCH_URL_COLUMN||Field from your Azure AI Search index that contains a URL for the document, e.g. an Azure Blob Storage URI. This value is not currently used.|
 |AZURE_SEARCH_VECTOR_COLUMNS||List of fields in your Azure AI Search index that contain vector embeddings of your documents to use when formulating a bot response. Represent these as a string joined with "|", e.g. `"product_description|product_manual"`|
-|AZURE_SEARCH_PERMITTED_GROUPS_COLUMN||Field from your Azure AI Search index that contains AAD group IDs that determine document-level access control.|
+|AZURE_SEARCH_PERMITTED_CUSTOMER_COLUMN||Field from your Azure AI Search index that contains AAD group IDs that determine document-level access control.|
 |AZURE_SEARCH_STRICTNESS|3|Integer from 1 to 5 specifying the strictness for the model limiting responses to your data.|
 |AZURE_OPENAI_RESOURCE||the name of your Azure OpenAI resource|
 |AZURE_OPENAI_MODEL||The name of your model deployment|

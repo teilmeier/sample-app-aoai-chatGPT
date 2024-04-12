@@ -1,5 +1,6 @@
 import os
 import json
+import jwt
 import logging
 import requests
 import dataclasses
@@ -8,8 +9,8 @@ DEBUG = os.environ.get("DEBUG", "false")
 if DEBUG.lower() == "true":
     logging.basicConfig(level=logging.DEBUG)
 
-AZURE_SEARCH_PERMITTED_GROUPS_COLUMN = os.environ.get(
-    "AZURE_SEARCH_PERMITTED_GROUPS_COLUMN"
+AZURE_SEARCH_PERMITTED_CUSTOMER_COLUMN = os.environ.get(
+    "AZURE_SEARCH_PERMITTED_CUSTOMER_COLUMN"
 )
 
 
@@ -60,6 +61,23 @@ def fetchUserGroups(userToken, nextLink=None):
         logging.error(f"Exception in fetchUserGroups: {e}")
         return []
 
+def fetchCustomer(userToken):
+    # Extract customer ID from token
+    try:
+        decoded_token = jwt.decode(userToken, algorithms=["HS256"])
+        customerId = decoded_token.get("unique_name")
+
+        # POC - Hardcoded customer IDs
+        if customerId == "customer1@example.com":
+            return "customer1"
+        elif customerId == "customer2@example.com":
+            return "customer2"
+        else:
+            return customerId
+
+    except Exception as e:
+        logging.error(f"Exception in fetchCustomer: {e}")
+        return ""
 
 def generateFilterString(userToken):
     # Get list of groups user is a member of
@@ -70,7 +88,7 @@ def generateFilterString(userToken):
         logging.debug("No user groups found")
 
     group_ids = ", ".join([obj["id"] for obj in userGroups])
-    return f"{AZURE_SEARCH_PERMITTED_GROUPS_COLUMN}/any(g:search.in(g, '{group_ids}'))"
+    return f"{AZURE_SEARCH_PERMITTED_CUSTOMER_COLUMN}/any(g:search.in(g, '{group_ids}'))"
 
 
 def format_non_streaming_response(chatCompletion, history_metadata, message_uuid=None):

@@ -105,8 +105,8 @@ AZURE_SEARCH_TITLE_COLUMN = os.environ.get("AZURE_SEARCH_TITLE_COLUMN")
 AZURE_SEARCH_URL_COLUMN = os.environ.get("AZURE_SEARCH_URL_COLUMN")
 AZURE_SEARCH_VECTOR_COLUMNS = os.environ.get("AZURE_SEARCH_VECTOR_COLUMNS")
 AZURE_SEARCH_QUERY_TYPE = os.environ.get("AZURE_SEARCH_QUERY_TYPE")
-AZURE_SEARCH_PERMITTED_GROUPS_COLUMN = os.environ.get(
-    "AZURE_SEARCH_PERMITTED_GROUPS_COLUMN"
+AZURE_SEARCH_PERMITTED_CUSTOMER_COLUMN = os.environ.get(
+    "AZURE_SEARCH_PERMITTED_CUSTOMER_COLUMN"
 )
 AZURE_SEARCH_STRICTNESS = os.environ.get("AZURE_SEARCH_STRICTNESS", SEARCH_STRICTNESS)
 
@@ -407,7 +407,7 @@ def get_configured_data_source():
         # Set filter
         filter = None
         userToken = None
-        if AZURE_SEARCH_PERMITTED_GROUPS_COLUMN:
+        if AZURE_SEARCH_PERMITTED_CUSTOMER_COLUMN:
             userToken = request.headers.get("X-MS-TOKEN-AAD-ACCESS-TOKEN", "")
             logging.debug(f"USER TOKEN is {'present' if userToken else 'not present'}")
             if not userToken:
